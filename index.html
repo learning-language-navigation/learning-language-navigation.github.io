@@ -127,7 +127,7 @@
                                 </span>
                                 <!-- Dataset Link. -->
                                 <span class="link-block">
-                                    <a href="https://github.com/robodhruv/visualnav-transformer#data-wrangling"
+                                    <a href="https://github.com/NHirose/learning-language-navigation.git"
                                         class="external-link button is-normal is-rounded is-dark">
                                         <span class="icon">
                                             <i class="fas fa-database"></i> </span>
@@ -203,38 +203,32 @@ The world is filled with a wide variety of objects, ranging from teapots and win
           <div class="content has-text-justified has-text-centered">
             <h3 class="title is-4">Data annotation</h3>
             <p>
-              The key idea behind building a VLMap is to fuse pretrained
-              visual-language features into a geometrical reconstruction of the scene. This can be
-              done by computing dense pixel-level embeddings from an existing
-              visual-language model (over the RGB-D video feed of the robot) and
-              back-projecting them onto the 3D surface of the environment (captured
-              from depth data used for reconstruction with visual odometry). Finally,
-              we generate the top-down scene representation by storing the visual-language
-              features of each image pixel in the corresponding grid map pixel location.
+We propose a novel method that leverages foundation models to label in-the-wild video data for training a language-conditioned navigation policy. Following figure shows the overview of our data augmentation approach. Our method is (i) scalable, as it uses abundant and readily available action-free data sources, (ii) efficient, as it leverages all captured objects in the image view during data augmentation, and (iii) generalizable, as it distils state-of-the-art large vision and language models to diverse and semantically meaningful annotations.
             </p>
             <img src="./static/images/system_overview.jpg" />            
             <h3 class="title is-4">Training dataset</h3>
             <p>
-              We encode the open-vocabulary landmark names ("chair", "green plant", "table" etc.)
-              with the text encoder in the Visual Language Model. Then we align the landmark names
-              with the pixels in the VLMap by computing the cosine similarity between their embeddings.
-              We get the mask of each landmark type with the argmax operation on the similarity score.
+We use a wide variety of egocentric datasets to train on, including: 1) Indoor Navigation Dataset: image observations from mobile robot trajectories in office building environments (see <a href="https://cvgl.stanford.edu/gonet/dataset/">GO Stanford2</a>, <a href="https://svl.stanford.edu/projects/dvmpc/dataset/">GO Stanford4</a> and <a href="https://sites.google.com/view/sacson-review/huron-dataset?authuser=0">HuRoN(SACSoN)</a> Dataset), 2) \bf YouTube Tour Dataset: YouTube video data of tours in indoor and outdoor environments, and 3) Human-walking Dataset: data collected from walking with a camera in an indoor home setting and outdoor city environments.
             </p>
-            <h4 class="title is-5"> &#x2022; YouTube Tour Dataset</h4>            
-            <video autoplay muted loop playsinline width="100%">
+            <h4 class="title is-5"> &#x2022; YouTube Tour Dataset</h4>     
+We curate about 100 hours of YouTube videos that include vastly diverse domains, which are significantly different from the university campus building settings seen in the Indoor Navigation Dataset. These videos from all over the world cover a broad spectrum of objects, scenes, and camera heights and types, contributing to more generalized model performance.      
+            <center>    
+            <video autoplay muted loop playsinline width="90%">
               <source src="static/videos/map_youtube.mp4" type="video/mp4">
             </video>     
-            <h4 class="title is-5"> &#x2022; Human-walking Dataset</h4>            
-            <video autoplay muted loop playsinline width="100%">
+            </center>                
+            <h4 class="title is-5"> &#x2022; Human-walking Dataset</h4>   
+To address the limitation, which YouTube videos often have a narrow field of view (FOV), we collect a dataset 
+of additional data by holding a wide FOV (fisheye) camera and collect a dataset by walking in inside and outside environments. The Human-walking Dataset includes 15.7 hours of data across 11 cities in 3 different countries.    
+            <center>                   
+            <video autoplay muted loop playsinline width="90%">
               <source src="static/videos/map_human_walking.mp4" type="video/mp4">
-            </video>                        
+              
+            </video>  
+            </center>                                    
             <h3 class="title is-4">Policy learning</h3>
             <p>
-              We generate the navigation policies in the form of executable code with the help of Large Language Models.
-              By providing a few examples in the prompt, we exploit GPT-3 to parse language
-              instructions into a string of executable code, expressing functions
-              or logic structures (if/else statements, for/while loops) and parameterizing API calls
-              (e.g., robot.move_to(target_name) or robot.turn(degrees)).
+We train the language-conditioned navigation policy after annotating the in-the-wild videos. Our cost function includes three objectives for 1) target object reaching, 2) collision avoidance, and 3) velocity smoothness. Please see the details on our manuscript and the released codes.
             </p>
           </div>
         </div>
@@ -255,8 +249,7 @@ The world is filled with a wide variety of objects, ranging from teapots and win
                 <h3 class="title is-4">Diverse Language Instructions</h3>
                 <div class="content has-text-justified">
                   <p>
-                    With open-vocabulary landmark indexing, VLMaps enables long-horizon spatial goal navigation with
-                    natural language instructions
+We evaluate our trained policy on target object navigation, which tasks the robot with navigating toward a visible target object from the current robot pose, in the various natural environments, which is not seen in the training datasets.
                   </p>
                 </div>
           </div>
@@ -335,8 +328,7 @@ The world is filled with a wide variety of objects, ranging from teapots and win
                 <h3 class="title is-4">Robustness for Noisy Instructions</h3>
                 <div class="content has-text-justified">
                   <p>
-                    With open-vocabulary landmark indexing, VLMaps enables long-horizon spatial goal navigation with
-                    natural language instructions
+                  Our method can show the robustness for the noisy instructions, which partially includes wrong words. 
                   </p>
                 </div>
             <center>    
@@ -363,11 +355,7 @@ The world is filled with a wide variety of objects, ranging from teapots and win
                 <h3 class="title is-4">Following Pedestrian</h3>
                 <div class="content has-text-justified">
                   <p>
-                    A VLMap can be shared among different robots and enables generation of obstacle maps for different
-                    embodiments on-the-fly to improve navigation efficiency. For example, a LoCoBot (ground robot) has
-                    to avoid sofa, tables, chairs and so on during planning while a drone can ignore them. Experiments
-                    below show how a single VLMap representation in each scene can adapt to different embodiments
-                    (by generating customized obstacle maps) and improve navigation efficiency.
+Due to the fast calculation of our relatively small-size policy on the robot edge controller, our method allows us to follow the dynamic target objects, such as pedestrians. 
                   </p>
                 </div>
           </div>
@@ -419,11 +407,7 @@ The world is filled with a wide variety of objects, ranging from teapots and win
                 <h3 class="title is-4">Cross Embodiment Navigation</h3>
                 <div class="content has-text-justified">
                   <p>
-                    A VLMap can be shared among different robots and enables generation of obstacle maps for different
-                    embodiments on-the-fly to improve navigation efficiency. For example, a LoCoBot (ground robot) has
-                    to avoid sofa, tables, chairs and so on during planning while a drone can ignore them. Experiments
-                    below show how a single VLMap representation in each scene can adapt to different embodiments
-                    (by generating customized obstacle maps) and improve navigation efficiency.
+Given that our proposed method leverages in-the-wild videos recorded by a variety of cameras at different poses for training, it is inherently capable of generalizing to different embodiments. To rigorously evaluate our policies' cross-embodiment capabilities, we test our policy on the three different robot setups, 1) quadruped robot, GO1 with PCB-mounted fisheye camera, 2) same mobile robot with different cameras such as Intel Realsense D435i, PCB-mounted fisheye camera, and Ricoh Theta S.
                   </p>
                 </div>
           </div>
@@ -537,8 +521,7 @@ The world is filled with a wide variety of objects, ranging from teapots and win
                 <h3 class="title is-4">Collision Avoidance</h3>
                 <div class="content has-text-justified">
                   <p>
-                    With open-vocabulary landmark indexing, VLMaps enables long-horizon spatial goal navigation with
-                    natural language instructions
+By distilling the navigation foundation model, NoMaD, our policy enables the robots to avoid the collision for the obstacles between the target object and the initial robot location.
                   </p>
                 </div>
             <center>    
@@ -565,11 +548,7 @@ The world is filled with a wide variety of objects, ranging from teapots and win
                 <h3 class="title is-4">Multiple Objects</h3>
                 <div class="content has-text-justified">
                   <p>
-                    A VLMap can be shared among different robots and enables generation of obstacle maps for different
-                    embodiments on-the-fly to improve navigation efficiency. For example, a LoCoBot (ground robot) has
-                    to avoid sofa, tables, chairs and so on during planning while a drone can ignore them. Experiments
-                    below show how a single VLMap representation in each scene can adapt to different embodiments
-                    (by generating customized obstacle maps) and improve navigation efficiency.
+Even when there are objects in the same type as the target object, our method distinguishes them from the prompts and allows navigation toward the correct target objects, 
                   </p>
                 </div>
           </div>
@@ -603,6 +582,20 @@ The world is filled with a wide variety of objects, ranging from teapots and win
                 </div>
             </div>
         </div>
+    </section>
+
+
+    <section class="section" id="BibTeX">  
+      <div class="container is-max-desktop">    
+        <h2 class="title">BibTeX</h2>
+        <pre><code> @inproceedings{hirose24lelan,
+        title={LeLaN: Learning A Language-conditioned Navigation Policy from In-the-Wild Video},
+        author={Noriaki Hirose and Catherine Glossop and Ajay Sridhar and Dhruv Shah and Oier Mees and Sergey Levine},
+        booktitle = {arXiv},
+        year={2024},
+        url={https://arxiv.org/abs/xxxxx}
+        } </code></pre>
+      </div>
     </section>
 
     <br>
