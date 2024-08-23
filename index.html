@@ -173,7 +173,12 @@
           <h2 class="title is-3">Abstract</h2>
           <div class="content has-text-justified">
             <p>
-The world is filled with a wide variety of objects, ranging from teapots and wine glasses in households, to park benches and traffic cones outdoors. For robots to be useful, they need the ability to find arbitrary objects described by people. In this project, we present LeLaN, a novel approach that consumes unlabeled, action-free egocentric data to learn scalable, language-conditioned object navigation. Our framework leverages the semantic knowledge of large vision and language models to label in-the-wild data from a variety of indoor and outdoor environments. These annotations include diverse instructions that capture a wide range of objects with varied granularity and noise in their descriptions. We apply LeLaN to label over 130 hours of data collected in real world indoor and outdoor environments, including robot observations, YouTube video tours, and human-collected walking data. Extensive experiments with over 1000 trials carried out in the real world show that LeLaN enables training a policy from unlabeled action-free videos that outperforms state-of-the-art methods on the challenging zero-shot language-conditioned object navigation tasks while being capable of inference at 4 times their speed on edge compute.
+            The world is filled with a wide variety of objects, ranging from teapots and wine glasses in households, to park benches and traffic cones outdoors. 
+            For robots to be useful, they need the ability to find arbitrary objects described by people. 
+            In this project, we present LeLaN, a novel approach that consumes unlabeled, action-free egocentric data to learn scalable, language-conditioned object navigation. 
+            Our framework leverages the semantic knowledge of large vision and language models to label in-the-wild data from a variety of indoor and outdoor environments. 
+            These annotations include diverse instructions that capture a wide range of objects with varied granularity and noise in their descriptions. We apply LeLaN to label over 130 hours of data collected in real world indoor and outdoor environments, including robot observations, YouTube video tours, and human-collected walking data. 
+            Extensive experiments with over 1000 trials carried out in the real world show that LeLaN enables training a policy from unlabeled action-free videos that outperforms state-of-the-art methods on the challenging zero-shot language-conditioned object navigation tasks while being capable of inference at 4 times their speed on edge compute.
 
             </p>
           </div>
@@ -203,23 +208,26 @@ The world is filled with a wide variety of objects, ranging from teapots and win
           <div class="content has-text-justified has-text-centered">
             <h3 class="title is-4">Data annotation</h3>
             <p>
-We propose a novel method that leverages foundation models to label in-the-wild video data for training a language-conditioned navigation policy. Following figure shows the overview of our data augmentation approach. Our method is (i) scalable, as it uses abundant and readily available action-free data sources, (ii) efficient, as it leverages all captured objects in the image view during data augmentation, and (iii) generalizable, as it distils state-of-the-art large vision and language models to diverse and semantically meaningful annotations.
+            We propose a novel method that leverages foundation models to label in-the-wild video data for training a language-conditioned navigation policy. 
+            Following figure shows the overview of our data augmentation approach. 
+            Our method is (i) scalable, as it uses abundant and readily available action-free data sources, (ii) efficient, as it leverages all captured objects in the image view during data augmentation, and (iii) generalizable, as it distils state-of-the-art large vision and language models to diverse and semantically meaningful annotations.
             </p>
             <img src="./static/images/system_overview.jpg" />            
             <h3 class="title is-4">Training dataset</h3>
             <p>
-We use a wide variety of egocentric datasets to train on, including: 1) Indoor Navigation Dataset: image observations from mobile robot trajectories in office building environments (see <a href="https://cvgl.stanford.edu/gonet/dataset/">GO Stanford2</a>, <a href="https://svl.stanford.edu/projects/dvmpc/dataset/">GO Stanford4</a> and <a href="https://sites.google.com/view/sacson-review/huron-dataset?authuser=0">HuRoN(SACSoN)</a> Dataset), 2) \bf YouTube Tour Dataset: YouTube video data of tours in indoor and outdoor environments, and 3) Human-walking Dataset: data collected from walking with a camera in an indoor home setting and outdoor city environments.
+            We use a wide variety of egocentric datasets to train on, including: 1) Indoor Navigation Dataset: image observations from mobile robot trajectories in office building environments (see <a href="https://cvgl.stanford.edu/gonet/dataset/">GO Stanford2</a>, <a href="https://svl.stanford.edu/projects/dvmpc/dataset/">GO Stanford4</a> and <a href="https://sites.google.com/view/sacson-review/huron-dataset?authuser=0">HuRoN(SACSoN)</a> Dataset), 2) \bf YouTube Tour Dataset: YouTube video data of tours in indoor and outdoor environments, and 3) Human-walking Dataset: data collected from walking with a camera in an indoor home setting and outdoor city environments.
             </p>
             <h4 class="title is-5"> &#x2022; YouTube Tour Dataset</h4>     
-We curate about 100 hours of YouTube videos that include vastly diverse domains, which are significantly different from the university campus building settings seen in the Indoor Navigation Dataset. These videos from all over the world cover a broad spectrum of objects, scenes, and camera heights and types, contributing to more generalized model performance.      
+            We curate about 100 hours of YouTube videos that include vastly diverse domains, which are significantly different from the university campus building settings seen in the Indoor Navigation Dataset.
+            These videos from all over the world cover a broad spectrum of objects, scenes, and camera heights and types, contributing to more generalized model performance.      
             <center>    
             <video autoplay muted loop playsinline width="90%">
               <source src="static/videos/map_youtube.mp4" type="video/mp4">
             </video>     
             </center>                
             <h4 class="title is-5"> &#x2022; Human-walking Dataset</h4>   
-To address the limitation, which YouTube videos often have a narrow field of view (FOV), we collect a dataset 
-of additional data by holding a wide FOV (fisheye) camera and collect a dataset by walking in inside and outside environments. The Human-walking Dataset includes 15.7 hours of data across 11 cities in 3 different countries.    
+            To address the limitation, which YouTube videos often have a narrow field of view (FOV), we collect a dataset of additional data by holding a wide FOV (fisheye) camera and collect a dataset by walking in inside and outside environments. 
+            The Human-walking Dataset includes 15.7 hours of data across 11 cities in 3 different countries.    
             <center>                   
             <video autoplay muted loop playsinline width="90%">
               <source src="static/videos/map_human_walking.mp4" type="video/mp4">
@@ -228,7 +236,9 @@ of additional data by holding a wide FOV (fisheye) camera and collect a dataset 
             </center>                                    
             <h3 class="title is-4">Policy learning</h3>
             <p>
-We train the language-conditioned navigation policy after annotating the in-the-wild videos. Our cost function includes three objectives for 1) target object reaching, 2) collision avoidance, and 3) velocity smoothness. Please see the details on our manuscript and the released codes.
+            We train the language-conditioned navigation policy after annotating the in-the-wild videos. 
+            Our cost function includes three objectives for 1) target object reaching, 2) collision avoidance, and 3) velocity smoothness. 
+            Please see the details on our manuscript and the released codes.
             </p>
           </div>
         </div>
@@ -249,7 +259,7 @@ We train the language-conditioned navigation policy after annotating the in-the-
                 <h3 class="title is-4">Diverse Language Instructions</h3>
                 <div class="content has-text-justified">
                   <p>
-We evaluate our trained policy on target object navigation, which tasks the robot with navigating toward a visible target object from the current robot pose, in the various natural environments, which is not seen in the training datasets.
+                  We evaluate our trained policy on target object navigation, which tasks the robot with navigating toward a visible target object from the current robot pose, in the various natural environments, which is not seen in the training datasets.
                   </p>
                 </div>
           </div>
@@ -355,7 +365,7 @@ We evaluate our trained policy on target object navigation, which tasks the robo
                 <h3 class="title is-4">Following Pedestrian</h3>
                 <div class="content has-text-justified">
                   <p>
-Due to the fast calculation of our relatively small-size policy on the robot edge controller, our method allows us to follow the dynamic target objects, such as pedestrians. 
+                  Due to the fast calculation of our relatively small-size policy on the robot edge controller, our method allows us to follow the dynamic target objects, such as pedestrians. 
                   </p>
                 </div>
           </div>
@@ -407,7 +417,8 @@ Due to the fast calculation of our relatively small-size policy on the robot edg
                 <h3 class="title is-4">Cross Embodiment Navigation</h3>
                 <div class="content has-text-justified">
                   <p>
-Given that our proposed method leverages in-the-wild videos recorded by a variety of cameras at different poses for training, it is inherently capable of generalizing to different embodiments. To rigorously evaluate our policies' cross-embodiment capabilities, we test our policy on the three different robot setups, 1) quadruped robot, GO1 with PCB-mounted fisheye camera, 2) same mobile robot with different cameras such as Intel Realsense D435i, PCB-mounted fisheye camera, and Ricoh Theta S.
+                  Given that our proposed method leverages in-the-wild videos recorded by a variety of cameras at different poses for training, it is inherently capable of generalizing to different embodiments. 
+                  To rigorously evaluate our policies' cross-embodiment capabilities, we test our policy on the three different robot setups, 1) quadruped robot, GO1 with PCB-mounted fisheye camera, 2) same mobile robot with different cameras such as Intel Realsense D435i, PCB-mounted fisheye camera, and Ricoh Theta S.
                   </p>
                 </div>
           </div>
@@ -521,7 +532,7 @@ Given that our proposed method leverages in-the-wild videos recorded by a variet
                 <h3 class="title is-4">Collision Avoidance</h3>
                 <div class="content has-text-justified">
                   <p>
-By distilling the navigation foundation model, NoMaD, our policy enables the robots to avoid the collision for the obstacles between the target object and the initial robot location.
+                  By distilling the navigation foundation model, NoMaD, our policy enables the robots to avoid the collision for the obstacles between the target object and the initial robot location.
                   </p>
                 </div>
             <center>    
@@ -548,7 +559,7 @@ By distilling the navigation foundation model, NoMaD, our policy enables the rob
                 <h3 class="title is-4">Multiple Objects</h3>
                 <div class="content has-text-justified">
                   <p>
-Even when there are objects in the same type as the target object, our method distinguishes them from the prompts and allows navigation toward the correct target objects, 
+                  Even when there are objects in the same type as the target object, our method distinguishes them from the prompts and allows navigation toward the correct target objects, 
                   </p>
                 </div>
           </div>
