@@ -595,6 +595,76 @@
         </div>
     </section>
 
+      <section class="section">
+        <div class="container is-max-desktop">
+
+          <div class="columns is-centered">
+
+
+            <!-- Animation. -->
+            <div class="columns is-centered">
+              <div class="column is-full-width">
+                <br />
+                <!--/ Interpolating. -->
+
+                <!-- Re-rendering. -->
+                <h3 class="title is-4">Long-distance Navigation with Topological Memory</h3>
+                <div class="content has-text-justified">
+                  <p>
+                  We can use the LeLaN to move toward the far target object, which is not seen in the current observation. 
+                  We leverage the topological memory (stack of pre-collected images) to look for the target object and indentify the target node. 
+                  At first stage (graph navigation phase), we navigate the robot to the target node location by vision-based navigation with the topological memory.
+                  When arrving at the target node, we switch the policy to the LeLan and navigate toward the target object location (final approach phase). 
+                  In our implementation, we use the ViNT in the first graph navigation phase.
+                  </p>
+                </div>
+          </div>
+      </section>
+
+    <!-- Results Carousel -->
+    <section class="hero is-light is-small">
+        <div class="hero-body">
+            <div class="container">
+                <div id="results-carousel" class="carousel results-carousel">
+                    <div class="item item-bww1">
+                        <video poster="" id="bww1" autoplay controls muted loop playsinline height="100%">
+                            <source src="./static/videos/topo_blue_trash_box.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                    <div class="item item-tello">
+                        <video poster="" id="tello" autoplay controls muted loop playsinline height="100%">
+                            <source src="./static/videos/topo_silver_dishwasher.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                    <div class="item item-go1-outside">
+                        <video poster="" id="go1-outside" autoplay controls muted loop playsinline height="100%">
+                            <source src="./static/videos/topo_orange_flower.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                    <div class="item item-go1-outside">
+                        <video poster="" id="go1-outside" autoplay controls muted loop playsinline height="100%">
+                            <source src="./static/videos/topo_green_box.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                    <div class="item item-go1-outside">
+                        <video poster="" id="go1-outside" autoplay controls muted loop playsinline height="100%">
+                            <source src="./static/videos/topo_green_couch.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                    <div class="item item-go1-outside">
+                        <video poster="" id="go1-outside" autoplay controls muted loop playsinline height="100%">
+                            <source src="./static/videos/topo_black_cart.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                    <div class="item item-go1-outside">
+                        <video poster="" id="go1-outside" autoplay controls muted loop playsinline height="100%">
+                            <source src="./static/videos/topo_black_chair.mp4" type="video/mp4">
+                        </video>
+                    </div>                                                                                
+                </div>
+            </div>
+        </div>
+    </section>
 
     <section class="section" id="BibTeX">  
       <div class="container is-max-desktop">    
